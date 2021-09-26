@@ -21,7 +21,7 @@ const clipboardDirective: ObjectDirective = {
           text: () => {
             return value;
           },
-          action: () => (arg === "cut" ? "cut" : "copy")
+          action: () => (arg === "cut" ? "cut" : "copy"),
         });
 
         clipboard.on("success", (e: Clipboard.Event) => {
@@ -48,10 +48,10 @@ const clipboardDirective: ObjectDirective = {
         el.clipboardErrorHandler = value;
         break;
       default:
-        el.clipboardInstance.text = function() {
+        el.clipboardInstance.text = function () {
           return binding.value;
         };
-        el.clipboardInstance.action = function() {
+        el.clipboardInstance.action = function () {
           return binding.arg === "cut" ? "cut" : "copy";
         };
         break;
@@ -71,13 +71,13 @@ const clipboardDirective: ObjectDirective = {
         delete el.clipboardInstance;
         break;
     }
-  }
+  },
 };
 
 const clipboardPlugin: Plugin = {
-  install: app => {
+  install: (app) => {
     app.directive("clipboard", clipboardDirective);
-  }
+  },
 };
 
 export default clipboardPlugin;

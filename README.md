@@ -1,25 +1,27 @@
-# vue3-directive
+# vue3-normal-directive
 
 ## Installation
+
 ```
-yarn add vue3-directive
+yarn add vue3-normal-directive
 ```
 
 OR
 
 ```
-npm install vue3-directive
+npm install vue3-normal-directive
 ```
 
 ## Use
+
 ```
 import Vue3Directive, {
   Permission,
   WaterMarker,
   LongClick,
-  ResizeText
-} from "vue3-directive";
-import { CheckPermissionFn } from "vue3-directive/packages/utils/types";
+  ResizeText,
+  CheckPermissionFn
+} from "vue3-normal-directive";
 
 const checkFunc: CheckPermissionFn = (v: string) => {
   return v === "has";
@@ -35,9 +37,6 @@ createApp(App)
   .mount("#app");
 ```
 
-
-
 ## ⚖️ License
 
 MIT
-

@@ -12,41 +12,25 @@ let _option: WatermarkPluginOptions = {
   fontColor: _defaultColor,
   width: 200,
   height: 200,
-  angle: (-20 * Math.PI) / 180
+  angle: (-20 * Math.PI) / 180,
 };
 
-export const useWaterMarker = (
-  parentNode: HTMLElement,
-  opt: WatermarkOption
-) => {
+export const useWaterMarker = (parentNode: HTMLElement, opt: WatermarkOption) => {
   // 水印文字，父元素，字体，文字颜色
   const can = document.createElement("canvas");
   parentNode.appendChild(can);
-  can.width =
-    (!opt || typeof opt == "string" ? _option.width : opt.width) ||
-    _option.width;
-  can.height =
-    (!opt || typeof opt === "string" ? _option.height : opt.height) ||
-    _option.height;
+  can.width = (!opt || typeof opt == "string" ? _option.width : opt.width) || _option.width;
+  can.height = (!opt || typeof opt === "string" ? _option.height : opt.height) || _option.height;
   can.style.display = "none";
   const cans = can.getContext("2d");
   if (cans) {
-    cans.rotate(
-      !opt || typeof opt === "string"
-        ? _option.angle
-        : opt.angle || _option.angle
-    );
-    cans.font =
-      (!opt || typeof opt === "string" ? _option.font : opt.font) || "";
+    cans.rotate(!opt || typeof opt === "string" ? _option.angle : opt.angle || _option.angle);
+    cans.font = (!opt || typeof opt === "string" ? _option.font : opt.font) || "";
     cans.fillStyle =
-      (!opt || typeof opt === "string" ? _option.fontColor : opt.fontColor) ||
-      _defaultColor;
+      (!opt || typeof opt === "string" ? _option.fontColor : opt.fontColor) || _defaultColor;
     cans.textAlign = "left";
     cans.textBaseline = "middle";
-    const text =
-      !opt || typeof opt === "string"
-        ? opt
-        : opt.text || _option.defaultWatermark;
+    const text = !opt || typeof opt === "string" ? opt : opt.text || _option.defaultWatermark;
 
     cans.fillText(text, can.width / 10, can.height / 2);
   }
@@ -57,14 +41,14 @@ export const useWaterMarker = (
 const waterMarker: ObjectDirective = {
   created: (el, binding) => {
     useWaterMarker(el, binding.value);
-  }
+  },
 };
 
 const waterMarkerPlugin = {
   install: (app: App, options: WatermarkPluginOptions) => {
     _option = Object.assign({}, _option, options);
     app.directive("water-marker", waterMarker);
-  }
+  },
 };
 
 export default waterMarkerPlugin;

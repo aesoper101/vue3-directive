@@ -3,7 +3,7 @@ import { PermissionOptions } from "../utils/types";
 import { App } from "vue";
 
 const _options: PermissionOptions = {
-  checkFunc: () => true
+  checkFunc: () => true,
 };
 
 const permissionDirective: ObjectDirective = {
@@ -15,7 +15,7 @@ const permissionDirective: ObjectDirective = {
         el.parentNode && el.parentNode.removeChild(el);
       }
     }
-  }
+  },
 };
 
 const permissionPlugin = {
@@ -25,7 +25,7 @@ const permissionPlugin = {
       _options.checkFunc = options.checkFunc;
     }
     app.directive("permission", permissionDirective);
-  }
+  },
 };
 
 export default permissionPlugin;

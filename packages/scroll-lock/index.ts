@@ -1,9 +1,5 @@
 import { ObjectDirective, Plugin } from "vue";
-import {
-  enableBodyScroll,
-  disableBodyScroll,
-  BodyScrollOptions
-} from "body-scroll-lock";
+import { enableBodyScroll, disableBodyScroll, BodyScrollOptions } from "body-scroll-lock";
 
 let _options: BodyScrollOptions = {};
 
@@ -20,18 +16,18 @@ export const VScrollLockDirective: ObjectDirective = {
       enableBodyScroll(el);
     }
   },
-  unmounted: el => {
+  unmounted: (el) => {
     enableBodyScroll(el);
-  }
+  },
 };
 
-const ScrollLockPlugin = {
+const ScrollLockPlugin: Plugin = {
   install: (app, opts?: BodyScrollOptions) => {
     if (opts) {
       _options = opts;
     }
     app.directive("scroll-lock", VScrollLockDirective);
-  }
+  },
 };
 
 export default ScrollLockPlugin;

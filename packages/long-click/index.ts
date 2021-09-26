@@ -3,7 +3,7 @@ import { LongClickOption } from "../utils/types";
 
 const _option: LongClickOption = {
   delay: 50,
-  interval: 400
+  interval: 400,
 };
 
 export const LongClick: ObjectDirective = {
@@ -23,11 +23,11 @@ export const LongClick: ObjectDirective = {
         }
       };
 
-      const handler = e => {
+      const handler = (e) => {
         binding.value(e);
       };
 
-      const start = e => {
+      const start = (e) => {
         if (e.type === "click" && e.button !== 0) {
           return;
         }
@@ -44,12 +44,12 @@ export const LongClick: ObjectDirective = {
         }
       };
 
-      ["mousedown", "touchstart"].forEach(e => el.addEventListener(e, start));
-      ["click", "mouseout", "touchend", "touchcancel"].forEach(e =>
+      ["mousedown", "touchstart"].forEach((e) => el.addEventListener(e, start));
+      ["click", "mouseout", "touchend", "touchcancel"].forEach((e) =>
         el.addEventListener(e, cancel)
       );
     }
-  }
+  },
 };
 
 const LongClickPlugin = {
@@ -61,7 +61,7 @@ const LongClickPlugin = {
       _option.delay = options.delay;
     }
     app.directive("long-click", LongClick);
-  }
+  },
 };
 
 export default LongClickPlugin;
